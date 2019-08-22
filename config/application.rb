@@ -15,3 +15,5 @@ module ChatSpace
       g.test_framework false
     end
 end
+end
+
