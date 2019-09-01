@@ -47,7 +47,7 @@ $(function() {
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html);
-      $('.form__message').val(''); //input内のメッセージを消しています。
+      $('#new_message')[0].reset(); 
       $('.form__submit').prop('disabled', false);
       scrollBottom()
       $('.notification').empty();
