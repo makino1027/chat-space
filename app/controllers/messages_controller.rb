@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
     if @message.save
       respond_to do |format|
         format.html
-        format.json 
+        format.json
       end   
     else
       @messages = @group.messages.includes(:user)
