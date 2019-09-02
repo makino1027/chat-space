@@ -24,11 +24,12 @@ li {
 
 a{
   text-decoration: none;
-  color:white;
+  color:$white; 
 }
 
-
-
+.right-header__button > a{
+   color: #38aef0;
+}
 
 .chat-group-form {
   width: 980px;
