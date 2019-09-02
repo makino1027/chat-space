@@ -59,7 +59,6 @@ $(function () {
     //追加ボタンのidとなまえを取得
     var name = $(this).data('user-name');
     var id = $(this).data('user-id');
-    console.log(name)
     $(this).parent().remove()
     //appendする
     appendUser(name,id)
