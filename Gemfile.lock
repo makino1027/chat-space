@@ -255,6 +255,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   carrierwave
+  coderay
   coffee-rails (~> 4.2)
   devise
   factory_bot_rails
