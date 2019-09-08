@@ -76,4 +76,4 @@ gem 'pry-rails'
 gem 'pry-byebug'
 gem 'pry-doc'
 gem 'coderay'
-
+gem 'fog-aws'
