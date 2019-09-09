@@ -13,5 +13,5 @@ CarrierWave.configure do |config|
   }
 
   config.fog_directory  = 'taichidata'
-  config.asset_host = 'https://taichidata.s3-ap-northeast-1.amazonaws.com/taichidata'
+  config.asset_host = 'https://taichidata.s3-ap-northeast-1.amazonaws.com/uploads'
 end
