@@ -44,19 +44,19 @@ p,
 blockquote,
 th,
 td {
-    margin:0;
-    padding:0;
+  margin:0;
+  padding:0;
 }
 table {
-    border-collapse:collapse;
-    border-spacing:0;
+  border-collapse:collapse;
+  border-spacing:0;
 }
 fieldset,
 img {
-    border:0;
+  border:0;
 }
 /*
-    TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
+  TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
 */
 address,
 caption,
@@ -124,3 +124,4 @@ legend {
 }
 /* YUI CSS Detection Stamp */
 #yui3-css-stamp.cssreset { display: none; }
+

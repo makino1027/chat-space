@@ -42,15 +42,16 @@ $(function() {
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html);
+      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
       $('#new_message')[0].reset(); 
-      $('.form__submit').prop('disabled', false);
-      scrollBottom()
+      $('.form__submit').removeAttr("disabled");
       $('.notification').empty();
       $('.notification').append('<div class="notice">メッセージを送信しました</div>')
+
     })
-    .fail(function(data){
+    .fail(function () {
       alert('エラーが発生したためメッセージは送信できませんでした。');
-      $('.form__submit').prop('disabled', false);
+      $('.form__submit').removeAttr("disabled");
     })
   })
  
