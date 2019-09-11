@@ -28,6 +28,7 @@ $(function() {
   }
 
   $('#new_message').on('submit', function(e) {
+    btn.disabled=true;
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action');
@@ -40,10 +41,10 @@ $(function() {
       contentType: false
     })
     .done(function(data){
+      $('#new_message')[0].reset(); 
       var html = buildHTML(data);
       $('.messages').append(html);
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
-      $('#new_message')[0].reset(); 
       $('.form__submit').removeAttr("disabled");
       $('.notification').empty();
       $('.notification').append('<div class="notice">メッセージを送信しました</div>')
@@ -52,6 +53,7 @@ $(function() {
     .fail(function () {
       alert('エラーが発生したためメッセージは送信できませんでした。');
       $('.form__submit').removeAttr("disabled");
+      $('#new_message')[0].reset(); 
     })
   })
  
