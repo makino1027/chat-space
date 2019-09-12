@@ -30,9 +30,7 @@
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
     var formData = new FormData(this);
-    var url = $(this).attr('action');
-    console.log(123);
-    
+    var url = $(this).attr('action'); 
     $.ajax({
       url: url,
       type: 'POST',
@@ -77,7 +75,8 @@
             $('.messages').append(insertHTML);
             $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
           })
-        })
+        
+        })      
         .fail(function () {
           alert('自動更新に失敗しました');
         });
