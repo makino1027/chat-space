@@ -66,20 +66,19 @@
         dataType: 'json',
         data: {message_id: last_message_id}
       })
-        .done(function (messages) {
-          
-          var insertHTML = '';
+      .done(function (messages) {          
 
-          messages.forEach(function (message) {
-            insertHTML = buildHTML(message);
-            $('.messages').append(insertHTML);
-            $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
-          })
-        
-        })      
-        .fail(function () {
-          alert('自動更新に失敗しました');
+        var insertHTML ='';
+        messages.forEach(function(message){
+          insertHTML += buildMessage(message);
         });
+        $('.messages').append(insertHTML)
+        $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
+        
+      })      
+        .fail(function () {
+        alert('自動更新に失敗しました');
+      });
            
     };
   }  
