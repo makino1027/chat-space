@@ -1,7 +1,7 @@
   $(document).on("turbolinks:load", function () {
    function buildHTML(message) {
     var content = message.content ? `<p class="lower-message__content">${message.content}</p>` : "";
-    var img = message.image.url ? `<img class="lower-message__image" src= ${message.image.url}>` : "";
+    var img = message.image.url ? `<img class="lower-message__image" src= ${message.image.url} width="100" height="100" >` : "";
     var html = `<div class="message" data-message-id="${message.id}">
                   <div class="upper-message">
                     <div class="upper-message__user-name">
@@ -31,6 +31,7 @@
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action'); 
+    console.log(123)
     $.ajax({
       url: url,
       type: 'POST',
