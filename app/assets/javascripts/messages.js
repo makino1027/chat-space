@@ -19,13 +19,6 @@
       return html;
   }
 
-  function scrollBottom(){
-    var target = $('.message').last();
-    var position = target.offset().top + $('.messages').scrollTop();
-    $('.messages').animate({
-      scrollTop: position
-    }, 300, 'swing');
-  }
 
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
@@ -41,13 +34,11 @@
       contentType: false
     })
     .done(function(data){
-      $('#new_message')[0].reset(); 
       var html = buildHTML(data);
       $('.messages').append(html);
-      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
       $('.form__submit').removeAttr("disabled");
-      $('.notification').empty();
-
+      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
+      $('#new_message')[0].reset();
     })
     .fail(function () {
       alert('エラーが発生したためメッセージは送信できませんでした。');
