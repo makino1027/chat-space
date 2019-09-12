@@ -1,4 +1,4 @@
-  $(function () {
+  $(document).on("turbolinks:load", function () {
    function buildHTML(message) {
     var content = message.content ? `<p class="lower-message__content">${message.content}</p>` : "";
     var img = message.image.url ? `<img class="lower-message__image" src= ${message.image.url}>` : "";
@@ -30,7 +30,7 @@
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
     var formData = new FormData(this);
-    var url = (window.location.href);
+    var url = $(this).attr('action'); 
     $.ajax({
       url: url,
       type: 'POST',
@@ -59,6 +59,7 @@
   var reloadMessages = function () {
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
       var last_message_id = $('.message:last').data('message-id');
+      
       $.ajax({
         url: 'api/messages#index {:format=>"json"}',
         type: 'get',
@@ -66,14 +67,12 @@
         data: {message_id: last_message_id}
       })
       .done(function (messages) {          
-
-        var insertHTML ='';
-          messages.forEach(function(message){
-          insertHTML += buildMessage(message);
+        var insertHTML = '';
+        messages.forEach(function (message) {
+          insertHTML = buildHTML(message);
+          $('.messages').append(insertHTML);
           $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
-        });
-        $('.messages').append(insertHTML)
-
+        })
         
       })      
         .fail(function () {
