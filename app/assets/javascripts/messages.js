@@ -46,7 +46,6 @@ $(function() {
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
       $('.form__submit').removeAttr("disabled");
       $('.notification').empty();
-      $('.notification').append('<div class="notice">メッセージを送信しました</div>')
 
     })
     .fail(function () {
