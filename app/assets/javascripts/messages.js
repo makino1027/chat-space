@@ -1,4 +1,4 @@
-  $(document).on("turbolinks:load", function () {
+  $(function () {
    function buildHTML(message) {
     var content = message.content ? `<p class="lower-message__content">${message.content}</p>` : "";
     var img = message.image.url ? `<img class="lower-message__image" src= ${message.image.url}>` : "";
@@ -30,7 +30,7 @@
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
     var formData = new FormData(this);
-    var url = $(this).attr('action'); 
+    var url = (window.location.href);
     $.ajax({
       url: url,
       type: 'POST',
@@ -82,6 +82,6 @@
            
     };
   }  
-  //setInterval(reloadMessages, 5000);
+  setInterval(reloadMessages, 5000);
 
 });
