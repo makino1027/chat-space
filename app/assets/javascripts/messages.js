@@ -28,7 +28,6 @@ $(function() {
   }
 
   $('#new_message').on('submit', function(e) {
-    btn.disabled=true;
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action');
@@ -55,6 +54,7 @@ $(function() {
       $('.form__submit').removeAttr("disabled");
       $('#new_message')[0].reset(); 
     })
+   
   })
  
   var reloadMessages = function () {
