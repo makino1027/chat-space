@@ -1,4 +1,4 @@
-  $(function () {
+$(document).on("turbolinks:load", function () {
    function buildHTML(message) {
     var content = message.content ? `<p class="lower-message__content">${message.content}</p>` : "";
     var img = message.image.url ? `<img class="lower-message__image" src= ${message.image.url}>` : "";
@@ -34,9 +34,9 @@
       contentType: false
     })
     .done(function(data){
-      var html = buildHTML(data);
       $('.messages').append(html);
       $('.form__submit').removeAttr("disabled");
+      var html = buildHTML(data);
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
       $('#new_message')[0].reset();
     })
