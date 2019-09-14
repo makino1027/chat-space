@@ -73,6 +73,7 @@ $(document).on("turbolinks:load", function () {
            
     };
   }  
-  setInterval(reloadMessages, 5000);
+  // setInterval(reloadMessages, 5000);
+      setTimeout(reloadMessages, 5000);
 
 });
