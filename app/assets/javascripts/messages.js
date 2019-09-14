@@ -1,7 +1,7 @@
-$(document).on("turbolinks:load", function () {
+$(function () {
    function buildHTML(message) {
     // var content = message.content ? `<p class="lower-message__content">${message.content}</p>` : "";
-
+console.log(message.id)
     var img = message.image.url ? `<img class="lower-message__image" src= ${message.image.url}>` : "";
     var html = `<div class="message" data-message-id="${message.id}">
                   <div class="upper-message">
@@ -54,7 +54,6 @@ $(document).on("turbolinks:load", function () {
   var reloadMessages = function () {
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
       var last_message_id = $('.message:last').data('message-id') || 0;
-      
       $.ajax({
         url: 'api/messages',
         type: 'get',
