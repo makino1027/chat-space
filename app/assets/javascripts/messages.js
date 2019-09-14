@@ -24,7 +24,7 @@ $(document).on("turbolinks:load", function () {
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action'); 
-    
+    $('#new_message').addClass('completed');
     $.ajax({
       url: url,
       type: 'POST',
@@ -34,17 +34,19 @@ $(document).on("turbolinks:load", function () {
       contentType: false
     })
     .done(function(data){   
-      $('.form__submit').removeAttr("disabled");
       var html = buildHTML(data);
-      $('.messages').append(html);
-      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
-      $('#new_message')[0].reset();
-    })
-    .fail(function () {
-      alert('エラーが発生したためメッセージは送信できませんでした。');
-      $('.form__submit').removeAttr("disabled");
+      $('.messages').append(html);   
       $('#new_message')[0].reset(); 
+      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
     })
+      .fail(function (data) {
+        alert('エラーが発生したためメッセージは送信できませんでした。');
+        $('.form__submit').removeAttr("disabled");
+        $('#new_message')[0].reset(); 
+      })
+      .always(function (data) {
+        $('.form__submit').removeAttr("disabled",false);
+      })
    
   })
  
@@ -68,8 +70,8 @@ $(document).on("turbolinks:load", function () {
         
       })      
         .fail(function () {
-        alert('自動更新に失敗しました');
-      });
+          alert('自動更新に失敗しました');
+        });
            
     };
   }  
