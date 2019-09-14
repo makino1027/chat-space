@@ -56,7 +56,7 @@ $(document).on("turbolinks:load", function () {
       var last_message_id = $('.message:last').data('message-id');
       
       $.ajax({
-        url: 'api/messages#index {:format=>"json"}',
+        url: 'api/messages#index',
         type: 'get',
         dataType: 'json',
         data: {message_id: last_message_id}
@@ -74,7 +74,6 @@ $(document).on("turbolinks:load", function () {
         });
            
     };
-    console.log(1);
   }  
   setInterval(reloadMessages, 5000);
 
