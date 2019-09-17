@@ -24,7 +24,7 @@ $(function () {
   // $('#new_message').on('submit', function(e) {
   $('#new_message').submit(function(e) {
     e.preventDefault();
-    e.stopPropagation();
+
     var formData = new FormData(this);
 
     var url = $(this).attr('action'); 
@@ -54,6 +54,7 @@ $(function () {
   })
  
   var reloadMessages = function () {
+
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
       var last_message_id = $('.message:last').data('message-id') || 0;
       $.ajax({
@@ -80,5 +81,6 @@ $(function () {
     };
   }
   setInterval(reloadMessages, 5000);
+
 
 });
