@@ -1,4 +1,4 @@
-  
+var syoriFlg = true;
 $(function () {
   
    function buildHTML(message) {
@@ -21,13 +21,14 @@ $(function () {
       return html;
   }
 
-  var syoriFlg = false;
-  // $('#new_message').on('submit', function(e) {
-  $('#new_message').submit(function(e) {
-    e.preventDefault();
-    syoriFlg = true;
-    var formData = new FormData(this);
 
+  // $('#new_message').on('submit', function(e) {
+  // $('#new_message').submit(function(e) {
+  $('#new_message').on('submit', function(e) {
+    e.preventDefault();
+   
+    var formData = new FormData(this);
+    syoriFlg = false;
     var url = $(this).attr('action'); 
     $('#new_message')[0].reset(); 
     $.ajax({
@@ -43,22 +44,21 @@ $(function () {
       $('.messages').append(html);   
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
     })
-      .fail(function () {
-        alert('エラーが発生したためメッセージは送信できませんでした。');
-        $('.form1__submit').removeAttr("disabled");
-        $('#new_message')[0].reset(); 
-      })
-      .always(function () {
-        $('.form1__submit').removeAttr("disabled",false);
-        syoriFlg=false;
-      })
-   
+    .fail(function () {
+      alert('エラーが発生したためメッセージは送信できませんでした。');
+      $('.form1__submit').removeAttr("disabled");
+      $('#new_message')[0].reset(); 
+    })
+    .always(function () {
+      $('.form1__submit').removeAttr("disabled",false);
+    })
+
   })
  
   var reloadMessages = function(){
 
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
-      if (syoriFlg = false){
+      if (syoriFlg = true){
         var last_message_id = $('.message:last').data('message-id') || 0;
         $.ajax({
           url: 'api/messages',
