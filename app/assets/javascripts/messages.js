@@ -1,6 +1,5 @@
   
 $(document).on("turbolinks:load", function () {
-  var syoriFlg = true;
    function buildHTML(message) {
     // var content = message.content ? `<p class="lower-message__content">${message.content}</p>` : "";
     var img = message.image.url ? `<img class="lower-message__image" src= ${message.image.url}>` : "";
@@ -24,9 +23,10 @@ $(document).on("turbolinks:load", function () {
 
   // $('#new_message').on('submit', function(e) {
   $('#new_message').submit(function(e) {
-    syoriFlg = false;
     e.preventDefault();
+    e.stopPropagation();
     var formData = new FormData(this);
+
     var url = $(this).attr('action'); 
     $('#new_message')[0].reset(); 
     $.ajax({
@@ -42,14 +42,13 @@ $(document).on("turbolinks:load", function () {
       $('.messages').append(html);   
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
     })
-      .fail(function (data) {
+      .fail(function () {
         alert('エラーが発生したためメッセージは送信できませんでした。');
         $('.form__submit').removeAttr("disabled");
         $('#new_message')[0].reset(); 
       })
-      .always(function (data) {
+      .always(function () {
         $('.form__submit').removeAttr("disabled",false);
-        syoriFlg = true;
       })
    
   })
@@ -64,6 +63,8 @@ $(document).on("turbolinks:load", function () {
         data: {message_id: last_message_id}
       })
       .done(function (messages) {
+        $('input[type=file]').off('change')
+        $('input[type=submit]').off('change')
         var insertHTML = '';
         if (messages.length > 0){
           messages.forEach(function (message) {
@@ -79,8 +80,6 @@ $(document).on("turbolinks:load", function () {
            
     };
   }
-  if (syoriFlg){
-    setInterval(reloadMessages, 5000);
-  };
+  setInterval(reloadMessages, 5000);
 
 });
