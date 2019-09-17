@@ -1,5 +1,6 @@
   
-$(function () {
+$(document).on("turbolinks:load", function () {
+  var syoriFlg = true;
    function buildHTML(message) {
     // var content = message.content ? `<p class="lower-message__content">${message.content}</p>` : "";
     var img = message.image.url ? `<img class="lower-message__image" src= ${message.image.url}>` : "";
@@ -23,6 +24,7 @@ $(function () {
 
   // $('#new_message').on('submit', function(e) {
   $('#new_message').submit(function(e) {
+    syoriFlg = false;
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action'); 
@@ -47,6 +49,7 @@ $(function () {
       })
       .always(function (data) {
         $('.form__submit').removeAttr("disabled",false);
+        syoriFlg = true;
       })
    
   })
@@ -76,5 +79,8 @@ $(function () {
            
     };
   }
-  setInterval(reloadMessages, 5000);
+  if (syoriFlg){
+    setInterval(reloadMessages, 5000);
+  };
+
 });
