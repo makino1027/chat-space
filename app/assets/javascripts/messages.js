@@ -1,5 +1,5 @@
   
-$(document).on("turbolinks:load", function () {
+$(function () {
    function buildHTML(message) {
     // var content = message.content ? `<p class="lower-message__content">${message.content}</p>` : "";
     var img = message.image.url ? `<img class="lower-message__image" src= ${message.image.url}>` : "";
@@ -63,6 +63,7 @@ $(document).on("turbolinks:load", function () {
         data: {message_id: last_message_id}
       })
       .done(function (messages) {
+
         var insertHTML = '';
         if (messages.length > 0){
           messages.forEach(function (message) {
