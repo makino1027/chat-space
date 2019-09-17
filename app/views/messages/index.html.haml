@@ -15,13 +15,13 @@
           = link_to "EDIT", edit_group_path(@group), data:{turbolinks: false}
     .messages
       = render @messages
-    .form
+    .form1
       = form_for [@group, @message] do |f| 
-        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
-        .form__mask
-          = f.label :image, class: 'form__mask__image' do
+        = f.text_field :content, class: 'form1__message', placeholder: 'type a message'
+        .form1__mask
+          = f.label :image, class: 'form1__mask__image' do
             = fa_icon 'picture-o', class: 'icon'
             = f.file_field :image, class: 'hidden'
-        = f.button 'Send', class: 'form__submit'
+        = f.submit 'Send', class: 'form1__submit'
         
         

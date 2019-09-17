@@ -44,11 +44,11 @@ $(document).on("turbolinks:load", function () {
     })
       .fail(function () {
         alert('エラーが発生したためメッセージは送信できませんでした。');
-        $('.form__submit').removeAttr("disabled");
+        $('.form1__submit').removeAttr("disabled");
         $('#new_message')[0].reset(); 
       })
       .always(function () {
-        $('.form__submit').removeAttr("disabled",false);
+        $('.form1__submit').removeAttr("disabled",false);
       })
    
   })
@@ -63,8 +63,6 @@ $(document).on("turbolinks:load", function () {
         data: {message_id: last_message_id}
       })
       .done(function (messages) {
-        $('input[type=file]').off('change')
-        $('input[type=submit]').off('change')
         var insertHTML = '';
         if (messages.length > 0){
           messages.forEach(function (message) {
