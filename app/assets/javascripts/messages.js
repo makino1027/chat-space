@@ -58,9 +58,10 @@ $(function () {
   var reloadMessages = function(){
 
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
-      if (syoriFlg = true){
-        var last_message_id = $('.message:last').data('message-id') || 0;
-        $.ajax({
+      
+      var last_message_id = $('.message:last').data('message-id') || 0;
+      console.log(last_message_id);
+      $.ajax({
           url: 'api/messages',
           type: 'get',
           dataType: 'json',
@@ -81,10 +82,10 @@ $(function () {
             alert('自動更新に失敗しました');
           });
              
-      };   
+     
     };
   }
-  setInterval(reloadMessages, 5000);
+  setInterval(reloadMessages, 10000);
 
 
 });
